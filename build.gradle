@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Rest Assured for API testing
+    implementation 'io.rest-assured:rest-assured:5.3.0'
+
+    // TestNG for running tests
+    testImplementation 'org.testng:testng:7.8.0'
+
+    // JSON assertion (optional but useful)
+    testImplementation 'io.rest-assured:json-path:5.3.0'
+
+    // Add Jackson Databind for JSON serialization
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+    implementation 'org.json:json:20230227'
+}
+
+test {
+    useTestNG()
+    // Ensure Gradle discovers test classes with packages
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+}
